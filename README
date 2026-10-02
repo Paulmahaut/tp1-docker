@@ -1,0 +1,19 @@
+# Database - PostgreSQL
+
+## Dockerfile
+Basé sur postgres:17.2-alpine, initialise la DB, l'utilisateur et le mot de passe via ENV.
+
+## Commandes
+docker build -t paul_mahaut/tp1-database .   #build the image and start a container properly
+
+docker run --name my-database -d paul_mahaut/tp1-database  #pull the image and laucnh it (to check)
+
+docker network create app-network #create my network
+
+docker network connect app-network my-database #by default the contenair is isolated, we have to connect it to our new network
+
+
+1-1 For which reason is it better to run the container with a flag -e to give the environment variables rather than put them directly in the Dockerfile?
+
+The flag -e allow us to create the environment parameters at the start of the image building, thus the parameters are specific to each and we have not to share our login when sharing our docker on github or to a collegue. (formulation can be improved)
+
